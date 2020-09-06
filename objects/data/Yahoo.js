@@ -73,7 +73,7 @@ class Yahoo {
 	 */
 	static getOptionsChain(symbol) {
 		return new Promise((resolve, reject) => {
-			const loading = ora("Downloading from Yahoo! Finance...").start();
+			//const loading = ora("Downloading from Yahoo! Finance...").start();
 			request('https://query2.finance.yahoo.com/v7/finance/options/' + symbol, (error, response, body) => {
 				if (error) reject(error);
 				else if (response.statusCode !== 200) reject(new LibraryError(body));

@@ -30,7 +30,7 @@ class Robinhood {
 			const json = JSON.parse(body);
 			if (json.next) {
 				let count = 0;
-				let loading = ora(`Downloading from Robinhood... (${++count})`).start();
+				//let loading = ora(`Downloading from Robinhood... (${++count})`).start();
 				let array = json.results;
 				let next = json.next;
 				async.whilst(() => { return next !== null; }, callback => {
@@ -47,12 +47,12 @@ class Robinhood {
 							const nextJson = JSON.parse(body);
 							next = nextJson.next;
 							array.push(nextJson.results);
-							loading.text = `Downloading from Robinhood... (${++count})`;
+							//loading.text = `Downloading from Robinhood... (${++count})`;
 							callback();
 						}
 					})
 				}, () => {
-					loading.succeed("Download completed after " + count + " requests.");
+					//loading.succeed("Download completed after " + count + " requests.");
 					resolve(array);
 				});
 			} else if (json.results) resolve(json.results.length === 1 ? json.results[0] : json.results);
